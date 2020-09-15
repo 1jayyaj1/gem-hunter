@@ -1,5 +1,10 @@
 #define INITIAL_CAPACITY 3
 
+typedef struct res {
+  int* v1;
+  int* v2;
+} res;
+
 void push(int *arr, int index, int value, int *size, int *capacity){
      if(*size > *capacity){
           int *p = realloc(arr, sizeof(arr) * 2);
@@ -10,7 +15,7 @@ void push(int *arr, int index, int value, int *size, int *capacity){
      *size = *size + 1;
 }
 
-static void compute_join(int *d1, int len1, int *d2, int len2){
+static res compute_join(int *d1, int len1, int *d2, int len2){
     int currD1;
     int currD2;
 
@@ -35,13 +40,18 @@ static void compute_join(int *d1, int len1, int *d2, int len2){
     	}
     }
 
-    for(int p1 = 0; p1 < sizeD2; p1++) {
-		P("[%d] %d\n", v1[p1], d1[v1[p1]]);
-    }
-    P("\n");
-    for(int p2 = 0; p2 < sizeD1; p2++) {
-		P("[%d] %d\n", v2[p2], d2[v2[p2]]);
-    }
+    struct res out;
+    out.v1 = v1;
+    out.v2 = v2;
+
+    return out;
+  //   for(int p1 = 0; p1 < sizeD2; p1++) {
+		// P("[%d] %d\n", v1[p1], d1[v1[p1]]);
+  //   }
+  //   P("\n");
+  //   for(int p2 = 0; p2 < sizeD1; p2++) {
+		// P("[%d] %d\n", v2[p2], d2[v2[p2]]);
+  //   }
 }
 
 static void run_join_a0(V d1, V d2){
